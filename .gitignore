@@ -1,7 +1,6 @@
 # Im Hauptordner zunächst alles ignorieren
 /*
 !.gitignore
-!Code/
 !Protokolle/
 
 # In Protokolle zunächst alle Dateien ignorieren
@@ -9,7 +8,6 @@ Protokolle/**
 
 # Verzeichnisse wieder freigeben, damit Git die PDFs findet
 !Protokolle/**/
-!Code/**/
 
 # Nur die fertigen Protokoll-PDFs freigeben
 !Protokolle/*/*.pdf
