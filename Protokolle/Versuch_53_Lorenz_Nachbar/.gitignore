@@ -1,0 +1,21 @@
+# LaTeX-Hilfsdateien
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Generiertes Haupt-PDF (bei Bedarf auskommentieren, wenn es versioniert werden soll)
+main.pdf

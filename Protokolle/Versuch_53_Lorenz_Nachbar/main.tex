@@ -1,0 +1,69 @@
+% Hauptdatei des gesamten Messprotokolls.
+% Immer diese Datei kompilieren; die Kapitel werden unten eingebunden.
+
+\documentclass{include/berichtclass}
+\usepackage{wrapfig}
+\usepackage[numbers]{natbib}
+\input{include/cmds}
+
+\SelectLanguage{ngerman}
+
+% --------------------------------------------------
+% Einstellungen für diesen Versuch: hier anpassen
+% --------------------------------------------------
+\newcommand{\versuch}{Versuch XX -- Titel des Versuchs}
+\newcommand{\datum}{TT.MM.JJJJ}
+
+% Angaben zur Person / Gruppe
+\newcommand{\name}{Vorname Nachname}
+\newcommand{\gruppe}{XX}
+\newcommand{\Kurs}{Vormittags / Nachmittags}
+
+% Hilfsbefehl für einfache Abbildungen:
+% \abbildung{Breite als Anteil der Textbreite}{Datei}{Bildunterschrift}{label}
+\newcommand{\abbildung}[4]{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=#1\textwidth]{#2}
+        \caption{#3}
+        \label{#4}
+    \end{figure}
+}
+
+\begin{document}
+
+% Titelseite und Inhaltsverzeichnis
+\FrontMatter
+\input{include/titlepage}
+\begingroup
+    \let\clearpage\relax
+    \pagestyle{plain}
+    \newpage
+    \tableofcontents
+\endgroup
+
+% Hauptteil: Diese Kapitel liegen bewusst in einzelnen Dateien.
+\MainMatter
+\begingroup
+    \let\clearpage\relax
+
+    \chapter{Einleitung}
+    \input{a_content/1_einleitung}
+
+    \chapter{Durchführung}
+    \input{a_content/2_durchfuehrung}
+
+    \newpage
+    \chapter{Auswertung}
+    \input{a_content/3_auswertung}
+
+    \chapter{Zusammenfassung und Diskussion}
+    \input{a_content/4_diskussion}
+\endgroup
+
+% Literaturverzeichnis (Quellen in lit.bib ergänzen und im Text zitieren)
+\TheBibliography
+\bibliographystyle{natdin}
+\bibliography{lit}
+
+\end{document}
