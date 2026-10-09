@@ -1,6 +1,7 @@
 # Im Hauptordner zunächst alles ignorieren
 /*
 !.gitignore
+!Code/
 !Protokolle/
 
 # In Protokolle zunächst alle Dateien ignorieren
