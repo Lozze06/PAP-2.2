@@ -9,6 +9,7 @@ Protokolle/**
 
 # Verzeichnisse wieder freigeben, damit Git die PDFs findet
 !Protokolle/**/
+!Code/**/
 
 # Nur die fertigen Protokoll-PDFs freigeben
-!Protokolle/**/main.pdf
+!Protokolle/*/*.pdf
