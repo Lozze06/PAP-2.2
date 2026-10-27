@@ -7,7 +7,7 @@ from uncertainties import ufloat
 def round_error_and_value(val, err):
     """
     Rundet Fehler auf 1 oder 2 signifikante Stellen auf und passt den 
-    Messwert auf die entsprechende Nachkommastelle an[cite: 92].
+    Messwert auf die entsprechende Nachkommastelle an.
     """
     if err == 0 or np.isnan(err):
         return f"{val}", f"{err}"
@@ -39,7 +39,7 @@ def auswerten_messreihe(daten, name="Messgröße", einheit=""):
     (Pandas Series), NumPy-Arrays oder Listen.
     
     Gibt ein `uncertainties.ufloat`-Objekt zurück, mit dem exakt weitergerechnet 
-    werden kann, und druckt die gerundeten Ergebnisse aus[cite: 92].
+    werden kann, und druckt die gerundeten Ergebnisse aus.
     """
     if isinstance(daten, pd.Series):
         y = daten.dropna().to_numpy(dtype=float)
@@ -52,9 +52,8 @@ def auswerten_messreihe(daten, name="Messgröße", einheit=""):
         raise ValueError(f"Die Messreihe '{name}' enthält keine gültigen Datenpunkte.")
     
     mittelwert = np.mean(y)
-    std_abw = np.std(y, ddof=1) if n > 1 else 0.0          # s_y (Stichprobe)[cite: 92]
-    std_fehler = std_abw / np.sqrt(n) if n > 1 else 0.0    # s_y_bar (Standardfehler)[cite: 92]
-    
+    std_abw = np.std(y, ddof=1) if n > 1 else 0.0          # s_y (Stichprobe)
+    std_fehler = std_abw / np.sqrt(n) if n > 1 else 0.0    # s_y_bar (Standardfehler)    
     val_str, err_str = round_error_and_value(mittelwert, std_fehler)
     
     print("=" * 45)
