@@ -2,7 +2,7 @@ import numpy as np
 from scipy.optimize import curve_fit
 from scipy.special import gamma
 
-# --- Modellsammlungen ---
+#Fit Modelle
 
 def linear(x, m, c):
     """Lineare Ausgleichsgerade (z.B. Induktion, Kalibrierung)"""
@@ -32,12 +32,9 @@ def moseley(z, A, sigma):
     """Moseley-Gesetz für Röntgenfluoreszenz (sqrt(E) vs Z)"""
     return A * (z - sigma)
 
-# --- Fit-Wrapper ---
+
 
 def perform_fit(model, x, y, y_err=None, p0=None, bounds=(-np.inf, np.inf)):
-    """
-    Führt curve_fit durch und extrahiert automatisch die Parameter-Fehler.
-    """
     if y_err is not None:
         popt, pcov = curve_fit(model, x, y, sigma=y_err, absolute_sigma=True, p0=p0, bounds=bounds)
     else:

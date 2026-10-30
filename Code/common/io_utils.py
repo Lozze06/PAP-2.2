@@ -1,26 +1,22 @@
-import pandas as pd
 import os
+import numpy as np
+import pandas as pd
 
-def load_messdaten(filepath, sep=',', decimal='.', skiprows=0, encoding='utf-8-sig'):
-    """
-    Lädt CSV/TXT-Messdaten robust ein, entfernt UTF-8-BOM sowie Leerzeichen
-    in den Spaltennamen.
-    """
-    if not os.path.exists(filepath):
-        if os.path.exists(os.path.join('Code', filepath)):
-            filepath = os.path.join('Code', filepath)
-        else:
-            raise FileNotFoundError(f"Die Datei wurde nicht gefunden: {filepath}")
-    
-    df = pd.read_csv(
-        filepath, 
-        sep=sep, 
-        decimal=decimal, 
-        skiprows=skiprows, 
-        encoding=encoding,
-        engine='python'
-    )
-    
-    # Spaltennamen von BOM-Zeichen und Leerzeichen bereinigen
-    df.columns = [str(col).strip() for col in df.columns]
-    return df
+def load_messdaten(
+    filepath, sep="\t", decimal=",", skiprows=0, encoding="utf-8-sig"): #txt oder csv laden
+
+    # Prüfen, ob die Datei am angegebenen Ort existiert
+    datei_existiert = os.path.exists(filepath)
+
+    if datei_existiert == False:
+        print("Fehler: Die Datei konnte nicht gefunden werden!")
+        print("Gesuchter Pfad:", filepath)
+        return None
+                            
+    # Datei mit Pandas einlesen
+    daten_tabelle = pd.read_csv(filepath, sep=sep, decimal=decimal, skiprows=skiprows, encoding=encoding, engine="python",)
+
+    # Tabelle in ein NumPy-Array umwandeln
+    daten_array = daten_tabelle.to_numpy()
+
+    return daten_array
