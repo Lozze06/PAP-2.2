@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.optimize import curve_fit
 from scipy.special import gamma
+import uncertainties.unumpy as unp
 
 #Fit Modelle
 
@@ -20,9 +21,9 @@ def double_exponential(x, A1, lam1, A2, lam2, y0):
     """Doppelter exponentieller Zerfall (z.B. Silber-Aktivierung)"""
     return A1 * np.exp(-lam1 * x) + A2 * np.exp(-lam2 * x) + y0
 
-def gaussian(x, A, mu, sigma):
+def gaussian(x, A, mu, sigma, y0):
     """Gauß-Verteilung (z.B. Histogramme, Spektren-Peaks)"""
-    return A * np.exp(-0.5 * ((x - mu) / sigma)**2)
+    return A * np.exp(-0.5 * ((x - mu) / sigma)**2) +y0
 
 def poisson_dist(k, A, mu):
     """Poisson-Verteilung (für k als kontinuierliche Variable approximiert über Gamma)"""

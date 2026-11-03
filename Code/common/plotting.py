@@ -51,6 +51,11 @@ def plot_with_fit(x, y, connect_points = False, y_err=None, x_fit=None, y_fit=No
             beschriftung = linie.get("label", None)
 
             ax.axvline( x=x_position,color=farbe,linestyle=linien_stil, linewidth=breite, label=beschriftung,)
+            # NEU: Schattierten Fehlerbereich einzeichnen, falls x_err angegeben ist
+            if "x_err" in linie:
+                x_err = linie["x_err"]
+                alpha_val = linie.get("alpha", 0.2)
+                ax.axvspan(x_position - x_err, x_position + x_err, color=farbe, alpha=alpha_val)
 # Achsenskalierung
     if log_x:
         ax.set_xscale("log")
